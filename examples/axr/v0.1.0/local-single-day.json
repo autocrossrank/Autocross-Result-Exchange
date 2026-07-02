@@ -1,0 +1,65 @@
+{
+  "specVersion": "0.1.0",
+  "format": "axr",
+  "source": {
+    "name": "Example Region Event 4 Results",
+    "url": "https://example.com/results/event-4.pdf",
+    "retrievedAt": "2026-07-01T15:30:00Z",
+    "publishedAt": null
+  },
+  "producer": {
+    "type": "timingSystem",
+    "name": "Pronto Timing",
+    "version": "5.1",
+    "organization": "Example Region SCCA",
+    "contact": null,
+    "notes": null
+  },
+  "organization": {
+    "name": "Example Region SCCA",
+    "sanctioningBody": "SCCA",
+    "region": "Example",
+    "division": "Midwest"
+  },
+  "event": {
+    "name": "Example Region Event 4",
+    "regionOrClub": "Example Region SCCA",
+    "location": "Madison, IL",
+    "dates": "2026-07-01",
+    "startDate": "2026-07-01",
+    "endDate": "2026-07-01",
+    "sourceUrl": "https://example.com/results/event-4.pdf",
+    "type": "Local",
+    "format": "SingleDay"
+  },
+  "classes": [
+    {
+      "name": "A Street",
+      "shortName": "AS",
+      "trophiesAwarded": 1,
+      "runHeat": 2,
+      "drivers": [
+        {
+          "position": 1,
+          "trophy": true,
+          "name": "Jane Driver",
+          "carNumber": "42",
+          "car": "2024 Mazda MX-5",
+          "location": "St. Louis, MO",
+          "rgn": "St. Louis",
+          "division": "Midwest",
+          "tireManufacturer": "Bridgestone",
+          "sponsor": null,
+          "course1Runs": ["64.321", "63.987", "64.123(1)"],
+          "course2Runs": [],
+          "course3Runs": [],
+          "totalTime": 63.987,
+          "paxTime": null,
+          "paxNote": null,
+          "bestTime": 63.987,
+          "notes": null
+        }
+      ]
+    }
+  ]
+}

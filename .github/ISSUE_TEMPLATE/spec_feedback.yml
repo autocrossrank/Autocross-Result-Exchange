@@ -1,0 +1,43 @@
+name: Spec feedback
+description: Suggest a change or clarification to the AXR specification.
+title: "[Spec]: "
+labels:
+  - spec
+body:
+  - type: input
+    id: axr-version
+    attributes:
+      label: AXR version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: source-format
+    attributes:
+      label: Timing system or source format
+      description: Describe the real-world result source if applicable.
+  - type: textarea
+    id: example-file
+    attributes:
+      label: Example file or sample data
+      description: Include public or fictionalized sample data if helpful.
+      render: json
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should AXR be able to express or clarify?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What is missing, ambiguous, or hard to represent today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-change
+    attributes:
+      label: Proposed change
+      description: Describe the schema, documentation, or example change you recommend.

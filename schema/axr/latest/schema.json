@@ -1,0 +1,336 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autocrossrank.com/spec/axr/0.1.0/schema.json",
+  "title": "Autocross Result Exchange v0.1.0",
+  "description": "A practical open JSON format for publishing autocross event results in a machine-readable way.",
+  "type": "object",
+  "required": ["specVersion", "event", "classes"],
+  "properties": {
+    "specVersion": {
+      "type": "string",
+      "enum": ["0.1.0"]
+    },
+    "format": {
+      "type": "string",
+      "enum": ["axr"]
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "producer": {
+      "$ref": "#/$defs/producer"
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    },
+    "organization": {
+      "$ref": "#/$defs/organization"
+    },
+    "event": {
+      "$ref": "#/$defs/event"
+    },
+    "classes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/classResult"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "source": {
+      "type": "object",
+      "description": "Describes where the original results came from.",
+      "properties": {
+        "name": {
+          "type": ["string", "null"]
+        },
+        "url": {
+          "type": ["string", "null"],
+          "format": "uri"
+        },
+        "retrievedAt": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "publishedAt": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "producer": {
+      "type": "object",
+      "description": "Identifies the person, software, timing system, organization, or process that created this AXR JSON file.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["timingSystem", "person", "organization", "script", "ai", "unknown"]
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "version": {
+          "type": ["string", "null"]
+        },
+        "organization": {
+          "type": ["string", "null"]
+        },
+        "contact": {
+          "type": ["string", "null"]
+        },
+        "notes": {
+          "type": ["string", "null"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "description": "Describes how the AXR file was created and how trustworthy or complete the conversion is.",
+      "properties": {
+        "conversionMethod": {
+          "type": "string",
+          "enum": ["timingSystem", "manual", "ai", "script", "unknown"]
+        },
+        "success": {
+          "type": ["boolean", "null"]
+        },
+        "reviewedByHuman": {
+          "type": ["boolean", "null"]
+        },
+        "confidence": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "failedSections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "organization": {
+      "type": "object",
+      "description": "Describes the club, region, or sanctioning body responsible for the event/results.",
+      "properties": {
+        "name": {
+          "type": ["string", "null"]
+        },
+        "sanctioningBody": {
+          "type": ["string", "null"]
+        },
+        "region": {
+          "type": ["string", "null"]
+        },
+        "division": {
+          "type": ["string", "null"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "event": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "regionOrClub": {
+          "type": ["string", "null"],
+          "maxLength": 200
+        },
+        "location": {
+          "type": ["string", "null"],
+          "maxLength": 100
+        },
+        "dates": {
+          "type": ["string", "null"],
+          "description": "Human-readable event date or date range.",
+          "maxLength": 50
+        },
+        "startDate": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "endDate": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "sourceUrl": {
+          "type": ["string", "null"],
+          "format": "uri"
+        },
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": ["Local", "Regional", "Divisional", "National", "NationalChampionship", "ProSolo", "ChampTour", "NationalTour"]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "format": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": ["SingleDay", "TwoDay", "TwoDaySum", "TwoCourseSum", "ThreeDay", "BestRunAcrossDays", "Custom", "Standard"]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "classResult": {
+      "type": "object",
+      "required": ["name", "drivers"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "shortName": {
+          "type": ["string", "null"],
+          "maxLength": 20
+        },
+        "trophiesAwarded": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 50
+        },
+        "runHeat": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "drivers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/driverResult"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "driverResult": {
+      "type": "object",
+      "required": ["position", "name", "carNumber"],
+      "properties": {
+        "position": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "trophy": {
+          "type": ["boolean", "null"]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "carNumber": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 10
+        },
+        "car": {
+          "type": ["string", "null"],
+          "maxLength": 100
+        },
+        "location": {
+          "type": ["string", "null"],
+          "maxLength": 100
+        },
+        "rgn": {
+          "type": ["string", "null"],
+          "maxLength": 50
+        },
+        "division": {
+          "type": ["string", "null"],
+          "maxLength": 50
+        },
+        "tireManufacturer": {
+          "type": ["string", "null"],
+          "maxLength": 50
+        },
+        "sponsor": {
+          "type": ["string", "null"],
+          "maxLength": 200
+        },
+        "course1Runs": {
+          "$ref": "#/$defs/runArray"
+        },
+        "course2Runs": {
+          "$ref": "#/$defs/runArray"
+        },
+        "course3Runs": {
+          "$ref": "#/$defs/runArray"
+        },
+        "totalTime": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "multipleOf": 0.001
+            },
+            {
+              "type": "string",
+              "enum": ["DSQ", "DNF", "DNS", "RRN", "No Time"]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "paxTime": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "multipleOf": 0.001
+        },
+        "paxNote": {
+          "type": ["string", "null"],
+          "maxLength": 50
+        },
+        "bestTime": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "multipleOf": 0.001
+        },
+        "notes": {
+          "type": ["string", "null"],
+          "maxLength": 500
+        }
+      },
+      "additionalProperties": false
+    },
+    "runArray": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 10,
+      "items": {
+        "type": "string",
+        "pattern": "^([0-9]+\\.[0-9]+(\\([0-9]+\\))?|No Time|DNF|DNS|DQ|RUN|DSQ|RRN)$"
+      }
+    }
+  }
+}

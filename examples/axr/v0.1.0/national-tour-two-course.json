@@ -1,0 +1,85 @@
+{
+  "specVersion": "0.1.0",
+  "format": "axr",
+  "source": {
+    "name": "Example National Tour Class Results",
+    "url": "https://example.com/results/national-tour.html",
+    "retrievedAt": "2026-07-01T20:00:00Z",
+    "publishedAt": null
+  },
+  "producer": {
+    "type": "timingSystem",
+    "name": "Pronto Timing",
+    "version": "5.1",
+    "organization": "Example Region SCCA",
+    "contact": null,
+    "notes": null
+  },
+  "organization": {
+    "name": "SCCA",
+    "sanctioningBody": "SCCA",
+    "region": null,
+    "division": null
+  },
+  "event": {
+    "name": "2026 Tire Rack SCCA Example National Tour",
+    "regionOrClub": "SCCA",
+    "location": "Lincoln, NE",
+    "dates": "2026-06-27 to 2026-06-28",
+    "startDate": "2026-06-27",
+    "endDate": "2026-06-28",
+    "sourceUrl": "https://example.com/results/national-tour.html",
+    "type": "NationalTour",
+    "format": "TwoCourseSum"
+  },
+  "classes": [
+    {
+      "name": "Super Street",
+      "shortName": "SS",
+      "trophiesAwarded": 2,
+      "runHeat": 1,
+      "drivers": [
+        {
+          "position": 1,
+          "trophy": true,
+          "name": "Alex Fast",
+          "carNumber": "11",
+          "car": "2023 Porsche 718",
+          "location": "Omaha, NE",
+          "rgn": "Nebraska",
+          "division": "Midwest",
+          "tireManufacturer": "Yokohama",
+          "sponsor": "Example Motorsports",
+          "course1Runs": ["59.112", "58.901", "DNF"],
+          "course2Runs": ["60.222", "59.998", "60.500(1)"],
+          "course3Runs": [],
+          "totalTime": 118.899,
+          "paxTime": null,
+          "paxNote": null,
+          "bestTime": null,
+          "notes": null
+        },
+        {
+          "position": 2,
+          "trophy": true,
+          "name": "Morgan Cone",
+          "carNumber": "77",
+          "car": "2022 Porsche 911",
+          "location": "Kansas City, MO",
+          "rgn": "Kansas City",
+          "division": "Midwest",
+          "tireManufacturer": "Bridgestone",
+          "sponsor": null,
+          "course1Runs": ["59.900", "59.401", "59.200(1)"],
+          "course2Runs": ["60.001", "60.100", "59.950"],
+          "course3Runs": [],
+          "totalTime": 119.351,
+          "paxTime": null,
+          "paxNote": null,
+          "bestTime": null,
+          "notes": null
+        }
+      ]
+    }
+  ]
+}

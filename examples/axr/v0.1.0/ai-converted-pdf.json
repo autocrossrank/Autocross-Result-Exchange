@@ -1,0 +1,75 @@
+{
+  "specVersion": "0.1.0",
+  "format": "axr",
+  "source": {
+    "name": "Historical STL SCCA Event Results PDF",
+    "url": "https://example.com/archive/2012-event-6.pdf",
+    "retrievedAt": "2026-07-01T15:30:00Z",
+    "publishedAt": null
+  },
+  "producer": {
+    "type": "person",
+    "name": "Chris Hammond",
+    "version": null,
+    "organization": "St. Louis archive converter",
+    "contact": null,
+    "notes": "Converted from historical PDF results"
+  },
+  "provenance": {
+    "conversionMethod": "ai",
+    "success": true,
+    "reviewedByHuman": false,
+    "confidence": 0.85,
+    "warnings": [
+      "One driver location was unreadable in the source PDF"
+    ],
+    "failedSections": []
+  },
+  "organization": {
+    "name": "St. Louis Region SCCA",
+    "sanctioningBody": "SCCA",
+    "region": "St. Louis",
+    "division": "Midwest"
+  },
+  "event": {
+    "name": "2012 St. Louis Region Event 6",
+    "regionOrClub": "St. Louis Region SCCA",
+    "location": "Madison, IL",
+    "dates": "2012-08-12",
+    "startDate": "2012-08-12",
+    "endDate": "2012-08-12",
+    "sourceUrl": "https://example.com/archive/2012-event-6.pdf",
+    "type": "Regional",
+    "format": "SingleDay"
+  },
+  "classes": [
+    {
+      "name": "C Street Prepared",
+      "shortName": "CSP",
+      "trophiesAwarded": 1,
+      "runHeat": 3,
+      "drivers": [
+        {
+          "position": 1,
+          "trophy": true,
+          "name": "Sam Archive",
+          "carNumber": "5",
+          "car": "1999 Mazda Miata",
+          "location": null,
+          "rgn": "St. Louis",
+          "division": "Midwest",
+          "tireManufacturer": null,
+          "sponsor": "Local Garage",
+          "course1Runs": ["64.123(1)", "62.444", "No Time"],
+          "course2Runs": [],
+          "course3Runs": [],
+          "totalTime": 62.444,
+          "paxTime": null,
+          "paxNote": null,
+          "bestTime": 62.444,
+          "notes": "Location unreadable in source PDF"
+        }
+      ]
+    }
+  ]
+}

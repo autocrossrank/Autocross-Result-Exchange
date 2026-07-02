@@ -1,0 +1,42 @@
+name: Timing system support
+description: Discuss AXR export support for a timing system or result format.
+title: "[Timing System]: "
+labels:
+  - timing-system
+body:
+  - type: input
+    id: axr-version
+    attributes:
+      label: AXR version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: timing-system
+    attributes:
+      label: Timing system or source format
+      placeholder: "Timing system name, PDF, HTML, CSV, other"
+    validations:
+      required: true
+  - type: textarea
+    id: example-file
+    attributes:
+      label: Example file or public sample
+      description: Link to public results or include fictionalized sample data if applicable.
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What AXR export or conversion support are you looking for?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What is hard to export, validate, or represent today?
+  - type: textarea
+    id: proposed-change
+    attributes:
+      label: Proposed change
+      description: Describe any fields, examples, documentation, or tooling that would help.

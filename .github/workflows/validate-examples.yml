@@ -1,0 +1,33 @@
+name: Validate AXR Examples
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: tools/package-lock.json
+
+      - name: Install validator dependencies
+        working-directory: tools
+        run: npm ci
+
+      - name: Validate AXR examples
+        working-directory: tools
+        run: node validate-axr.js ../examples/axr/v0.1.0/*.json
+
+      - name: Verify latest schema mirror
+        run: cmp schema/axr/v0.1.0/schema.json schema/axr/latest/schema.json

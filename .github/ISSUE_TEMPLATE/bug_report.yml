@@ -1,0 +1,43 @@
+name: Bug report
+description: Report a schema, documentation, example, or validation problem.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: input
+    id: axr-version
+    attributes:
+      label: AXR version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: example-file
+    attributes:
+      label: Example file or minimal JSON
+      description: Include the smallest example that reproduces the issue. Do not include private data.
+      render: json
+  - type: input
+    id: timing-system
+    attributes:
+      label: Timing system or source format
+      placeholder: "Example Timing, PDF, HTML, CSV"
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-change
+    attributes:
+      label: Proposed change
+      description: If you have a fix or direction in mind, describe it here.
