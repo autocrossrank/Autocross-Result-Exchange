@@ -260,9 +260,9 @@ Example:
 "course1Runs": ["64.123", "64.123(1)", "DNF", "No Time"]
 ```
 
-Notes: `course1Runs`, `course2Runs`, and `course3Runs` each allow up to 10 run
-strings. Cones are represented by appending the cone count in parentheses, such
-as `64.123(1)`.
+Notes: `course1Runs`, `course2Runs`, and `course3Runs` may contain as many run
+strings as the event format requires. Cones are represented by appending the
+cone count in parentheses, such as `64.123(1)`.
 
 ## Time Fields
 

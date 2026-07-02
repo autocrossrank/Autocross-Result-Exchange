@@ -39,11 +39,25 @@ https://autocrossrank.com/spec/axr/latest/schema.json
 
 ## Patch, Minor, And Major Changes
 
-Patch changes should clarify documentation, fix examples, or correct obvious
-non-contract mistakes.
+Patch changes should clarify documentation, fix examples, correct obvious
+non-contract mistakes, or make backward-compatible schema relaxations.
 
 Minor changes before `1.0` may add fields, refine structure, or make breaking
 working-draft changes.
 
 Major changes at or after `1.0` should be reserved for breaking public contract
 changes.
+
+## When To Change `specVersion`
+
+Do not change `specVersion` for documentation-only updates, example fixes, or
+backward-compatible schema relaxations that only allow files previously rejected
+by the schema.
+
+Change `specVersion` when the public contract changes in a way producers or
+consumers need to distinguish. Breaking changes should use a new minor version
+while AXR is in `0.x` working draft status.
+
+If a version has already been tagged, released, or published as a hosted schema,
+subsequent schema contract changes should use a new patch or minor version
+instead of rewriting the published version in place.

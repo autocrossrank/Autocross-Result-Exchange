@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Relaxed AXR run arrays so `course1Runs`, `course2Runs`, and `course3Runs`
+  no longer have a fixed maximum item count.
+
 ## 0.1.0 - Working Draft
 
 Initial public working draft of Autocross Result Exchange.

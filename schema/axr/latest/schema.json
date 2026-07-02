@@ -326,7 +326,6 @@
     "runArray": {
       "type": "array",
       "minItems": 0,
-      "maxItems": 10,
       "items": {
         "type": "string",
         "pattern": "^([0-9]+\\.[0-9]+(\\([0-9]+\\))?|No Time|DNF|DNS|DQ|RUN|DSQ|RRN)$"

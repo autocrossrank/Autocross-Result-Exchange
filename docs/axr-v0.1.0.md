@@ -147,6 +147,10 @@ and keeps extraction simple:
 }
 ```
 
+AXR does not impose a fixed maximum number of run strings in `course1Runs`,
+`course2Runs`, or `course3Runs`. Producers should include the runs needed to
+represent the event format accurately.
+
 Accepted run strings follow this pattern:
 
 ```regex
