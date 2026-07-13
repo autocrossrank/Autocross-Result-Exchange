@@ -80,7 +80,7 @@ must be equal to one of the allowed values
 Invalid run string:
 
 ```text
-must match pattern "^([0-9]+\\.[0-9]+(\\([0-9]+\\))?|No Time|DNF|DNS|DQ|RUN|DSQ|RRN)$"
+must match pattern "^([0-9]+\\.[0-9]+(\\([0-9]+\\))?|No Time|DNF|DNS|DQ|RUN|DSQ|RRN|RL)$"
 ```
 
 When validation fails, fix the AXR file or propose a schema change if the file

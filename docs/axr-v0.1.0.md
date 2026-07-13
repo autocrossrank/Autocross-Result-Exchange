@@ -154,7 +154,7 @@ represent the event format accurately.
 Accepted run strings follow this pattern:
 
 ```regex
-^([0-9]+\.[0-9]+(\([0-9]+\))?|No Time|DNF|DNS|DQ|RUN|DSQ|RRN)$
+^([0-9]+\.[0-9]+(\([0-9]+\))?|No Time|DNF|DNS|DQ|RUN|DSQ|RRN|RL)$
 ```
 
 `totalTime` can be a non-negative number, `DSQ`, `DNF`, `DNS`, `RRN`, `No Time`,
@@ -168,7 +168,7 @@ known, and use `source.url` for the published official result when available.
 
 For penalties, preserve the printed run notation. For example, a 64.123 second
 run with one cone is represented as `64.123(1)`. Use status strings such as
-`DNF`, `DNS`, `DSQ`, `RRN`, and `No Time` when those are the official result
+`DNF`, `DNS`, `DSQ`, `RRN`, `RL`, and `No Time` when those are the official result
 values.
 
 ## AI/PDF Conversion Guidance

@@ -301,5 +301,6 @@ Example:
 "totalTime": "DNF"
 ```
 
-Notes: run strings support `No Time`, `DNF`, `DNS`, `DQ`, `RUN`, `DSQ`, and
-`RRN`. `totalTime` supports `DSQ`, `DNF`, `DNS`, `RRN`, and `No Time`.
+Notes: run strings support `No Time`, `DNF`, `DNS`, `DQ`, `RUN`, `DSQ`,
+`RRN`, and `RL`. `totalTime` supports `DSQ`, `DNF`, `DNS`, `RRN`, and
+`No Time`.

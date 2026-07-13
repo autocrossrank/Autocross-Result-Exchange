@@ -4,6 +4,7 @@
 
 - Relaxed AXR run arrays so `course1Runs`, `course2Runs`, and `course3Runs`
   no longer have a fixed maximum item count.
+- Added `RL` as a supported non-numeric run string status.
 
 ## 0.1.0 - Working Draft
 
@@ -14,6 +15,6 @@ Includes:
 - AXR JSON Schema Draft 2020-12 schema
 - Event, class, and driver result structure
 - Source, producer, and provenance metadata
-- Run string support for times, penalties, DNF/DNS/DSQ/RRN
+- Run string support for times, penalties, DNF/DNS/DSQ/RRN/RL
 - Examples for local, two-course, and AI-converted results
 - Validation tooling

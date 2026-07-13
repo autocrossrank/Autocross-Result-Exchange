@@ -125,17 +125,17 @@ Represent cones by appending the cone count in parentheses:
 Use the official status text for non-time runs:
 
 ```json
-"course1Runs": ["DNF", "DNS", "DSQ", "No Time"]
+"course1Runs": ["DNF", "DNS", "DSQ", "RL", "No Time"]
 ```
 
-## Representing DNF, DNS, And DSQ
+## Representing DNF, DNS, DSQ, And RL
 
 Use status strings in run arrays when the status applies to an individual run.
 Use `totalTime` when the status is the driver's final scored result.
 
 ```json
 {
-  "course1Runs": ["DNF", "DNS", "DSQ"],
+  "course1Runs": ["DNF", "DNS", "DSQ", "RL"],
   "totalTime": "DNF"
 }
 ```
