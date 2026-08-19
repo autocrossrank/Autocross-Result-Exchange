@@ -6,11 +6,15 @@ const Ajv2020 = require("ajv/dist/2020");
 const addFormats = require("ajv-formats");
 
 const repoRoot = path.resolve(__dirname, "..");
-const defaultSchemaPath = path.join(repoRoot, "schema", "axr", "v0.1.0", "schema.json");
+const defaultSpecVersion = "0.1.0";
 
 function readJson(filePath) {
   const raw = fs.readFileSync(filePath, "utf8");
   return JSON.parse(raw);
+}
+
+function schemaPathForVersion(specVersion) {
+  return path.join(repoRoot, "schema", "axr", `v${specVersion}`, "schema.json");
 }
 
 function formatInstancePath(error) {
@@ -56,25 +60,37 @@ function main() {
     process.exit(args.length === 0 ? 1 : 0);
   }
 
-  const schema = readJson(defaultSchemaPath);
   const ajv = new Ajv2020({ allErrors: true, strict: false });
   addFormats(ajv);
+  const validatorsByVersion = new Map();
 
-  const validate = ajv.compile(schema);
+  function validatorForVersion(specVersion) {
+    if (!validatorsByVersion.has(specVersion)) {
+      const schema = readJson(schemaPathForVersion(specVersion));
+      validatorsByVersion.set(specVersion, ajv.compile(schema));
+    }
+    return validatorsByVersion.get(specVersion);
+  }
+
   let failed = false;
 
   const inputPaths = args.flatMap(expandInput);
 
   for (const inputPath of inputPaths) {
     const filePath = path.resolve(process.cwd(), inputPath);
+    const displayPath = path.relative(process.cwd(), filePath) || inputPath;
 
     try {
       const data = readJson(filePath);
+      // Each file declares the schema version it targets. Falls back to the
+      // original default (0.1.0) only when specVersion is missing entirely,
+      // so the "missing specVersion" validation error still surfaces normally.
+      const specVersion = typeof data.specVersion === "string" ? data.specVersion : defaultSpecVersion;
+      const validate = validatorForVersion(specVersion);
       const valid = validate(data);
-      const displayPath = path.relative(process.cwd(), filePath) || inputPath;
 
       if (valid) {
-        console.log(`PASS ${displayPath}`);
+        console.log(`PASS ${displayPath} (specVersion ${specVersion})`);
         continue;
       }
 

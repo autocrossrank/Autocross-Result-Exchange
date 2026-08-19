@@ -178,7 +178,7 @@
           "oneOf": [
             {
               "type": "string",
-              "enum": ["Local", "Regional", "Divisional", "National", "NationalChampionship", "ProSolo", "ChampTour", "NationalTour"]
+              "enum": ["Local", "Regional", "Divisional", "National", "NationalChampionship", "ProSolo", "ProSoloFinale", "ChampTour", "NationalTour"]
             },
             {
               "type": "null"

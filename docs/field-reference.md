@@ -1,7 +1,9 @@
-# AXR v0.1.0 Field Reference
+# AXR Field Reference
 
-This reference summarizes the public fields in Autocross Result Exchange v0.1.0.
-The JSON Schema remains the final validation contract.
+This reference summarizes the public fields in the current Autocross Result
+Exchange working draft, v0.2.0. The JSON Schema remains the final validation
+contract. See [axr-v0.1.0.md](axr-v0.1.0.md) for the frozen v0.1.0 field set
+(no `course4Runs`) if you're integrating against a pinned `0.1.0`.
 
 ## `specVersion`
 
@@ -14,10 +16,13 @@ Required: yes.
 Example:
 
 ```json
-"specVersion": "0.1.0"
+"specVersion": "0.2.0"
 ```
 
-Notes: v0.1.0 files must use exactly `0.1.0`.
+Notes: each schema version accepts only its own exact `specVersion` string —
+a `0.2.0` file must use exactly `0.2.0`, a `0.1.0` file must use exactly
+`0.1.0`. Version-specific fields (like `course4Runs`, added in `0.2.0`) are
+only valid under the `specVersion` that introduced them.
 
 ## `format`
 
@@ -157,8 +162,8 @@ Example:
 ```
 
 Notes: `event.name` is required. `event.type` may be `Local`, `Regional`,
-`Divisional`, `National`, `NationalChampionship`, `ProSolo`, `ChampTour`, or
-`NationalTour`. `event.format` may be `SingleDay`, `TwoDay`, `TwoDaySum`,
+`Divisional`, `National`, `NationalChampionship`, `ProSolo`, `ProSoloFinale`,
+`ChampTour`, or `NationalTour`. `event.format` may be `SingleDay`, `TwoDay`, `TwoDaySum`,
 `TwoCourseSum`, `ThreeDay`, `BestRunAcrossDays`, `Custom`, or `Standard`.
 
 ## `classes`
@@ -234,6 +239,7 @@ Example:
   "course1Runs": ["64.321", "63.987", "64.123(1)"],
   "course2Runs": [],
   "course3Runs": [],
+  "course4Runs": [],
   "totalTime": 63.987,
   "paxTime": null,
   "paxNote": null,
@@ -260,9 +266,10 @@ Example:
 "course1Runs": ["64.123", "64.123(1)", "DNF", "No Time"]
 ```
 
-Notes: `course1Runs`, `course2Runs`, and `course3Runs` may contain as many run
-strings as the event format requires. Cones are represented by appending the
-cone count in parentheses, such as `64.123(1)`.
+Notes: `course1Runs`, `course2Runs`, `course3Runs`, and `course4Runs` (added in
+v0.2.0) may contain as many run strings as the event format requires. Omit
+arrays that don't apply rather than padding them empty. Cones are represented
+by appending the cone count in parentheses, such as `64.123(1)`.
 
 ## Time Fields
 

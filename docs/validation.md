@@ -1,11 +1,11 @@
 # AXR Validation
 
-AXR v0.1.0 is validated with JSON Schema Draft 2020-12.
-
-The schema lives at:
+AXR is validated with JSON Schema Draft 2020-12. Each schema version has its
+own versioned schema file, for example:
 
 ```text
 schema/axr/v0.1.0/schema.json
+schema/axr/v0.2.0/schema.json
 ```
 
 ## Included Node Validator
@@ -15,22 +15,27 @@ Install dependencies and validate examples from the repository root:
 ```text
 cd tools
 npm install
-node validate-axr.js ../examples/axr/v0.1.0/*.json
+node validate-axr.js ../examples/axr/v0.2.0/*.json
 ```
 
 Validate one file:
 
 ```text
-node validate-axr.js ../examples/axr/v0.1.0/local-single-day.json
+node validate-axr.js ../examples/axr/v0.2.0/local-single-day.json
 ```
 
-Validate multiple files:
+Validate multiple files, including across versions in one run:
 
 ```text
-node validate-axr.js ../examples/axr/v0.1.0/*.json
+node validate-axr.js ../examples/axr/v0.1.0/*.json ../examples/axr/v0.2.0/*.json
 ```
 
-The validator loads `../schema/axr/v0.1.0/schema.json` by default.
+The validator reads each file's own `specVersion` and loads the matching
+`schema/axr/v{specVersion}/schema.json` automatically — a `0.1.0` file is
+checked against the `0.1.0` schema, a `0.2.0` file against the `0.2.0` schema,
+in the same run. Files with no `specVersion` at all fall back to `0.1.0` so the
+"missing specVersion" error still surfaces normally rather than crashing the
+validator.
 
 ## Other JSON Schema Tools
 
@@ -43,6 +48,7 @@ The GitHub Actions workflow validates all public examples under:
 
 ```text
 examples/axr/v0.1.0
+examples/axr/v0.2.0
 ```
 
 It also checks that:
@@ -51,10 +57,10 @@ It also checks that:
 schema/axr/latest/schema.json
 ```
 
-is byte-identical to:
+is byte-identical to the newest versioned schema (currently):
 
 ```text
-schema/axr/v0.1.0/schema.json
+schema/axr/v0.2.0/schema.json
 ```
 
 ## Common Errors

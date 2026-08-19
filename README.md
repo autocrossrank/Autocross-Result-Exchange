@@ -22,16 +22,17 @@ created the AXR file, and how trustworthy or complete a conversion is.
 
 ## Current Version
 
-Current version: AXR v0.1.0 Working Draft
+Current version: AXR v0.2.0 Working Draft
 
-- Specification: [docs/axr-v0.1.0.md](docs/axr-v0.1.0.md)
+- Specification: [docs/axr-v0.2.0.md](docs/axr-v0.2.0.md)
 - Field reference: [docs/field-reference.md](docs/field-reference.md)
 - Versioning notes: [docs/versioning.md](docs/versioning.md)
+- Previous version: [docs/axr-v0.1.0.md](docs/axr-v0.1.0.md) (still valid; no `course4Runs`)
 
 Canonical hosted schema URL:
 
 ```text
-https://autocrossrank.com/spec/axr/0.1.0/schema.json
+https://autocrossrank.com/spec/axr/0.2.0/schema.json
 ```
 
 Latest schema URL:
@@ -41,13 +42,13 @@ https://autocrossrank.com/spec/axr/latest/schema.json
 ```
 
 Production integrations should use a pinned versioned schema URL such as
-`/0.1.0/`, not `/latest/`.
+`/0.2.0/` or `/0.1.0/`, not `/latest/`.
 
 ## Quick Example
 
 ```json
 {
-  "specVersion": "0.1.0",
+  "specVersion": "0.2.0",
   "format": "axr",
   "source": {
     "name": "Example Region Event 4 Results",
@@ -112,27 +113,32 @@ Production integrations should use a pinned versioned schema URL such as
 
 The schema is JSON Schema Draft 2020-12.
 
-- Versioned schema: [schema/axr/v0.1.0/schema.json](schema/axr/v0.1.0/schema.json)
+- Current versioned schema: [schema/axr/v0.2.0/schema.json](schema/axr/v0.2.0/schema.json)
+- Previous versioned schema: [schema/axr/v0.1.0/schema.json](schema/axr/v0.1.0/schema.json)
 - Latest mirror: [schema/axr/latest/schema.json](schema/axr/latest/schema.json)
 
-For now, `latest` is byte-identical to `v0.1.0`.
+`latest` is byte-identical to the newest versioned schema (currently `v0.2.0`).
 
 ## Examples
 
-Public examples live in [examples/axr/v0.1.0](examples/axr/v0.1.0):
+Current examples live in [examples/axr/v0.2.0](examples/axr/v0.2.0):
 
-- [local-single-day.json](examples/axr/v0.1.0/local-single-day.json)
-- [national-tour-two-course.json](examples/axr/v0.1.0/national-tour-two-course.json)
-- [ai-converted-pdf.json](examples/axr/v0.1.0/ai-converted-pdf.json)
+- [local-single-day.json](examples/axr/v0.2.0/local-single-day.json)
+- [national-tour-two-course.json](examples/axr/v0.2.0/national-tour-two-course.json)
+- [national-championship-four-course.json](examples/axr/v0.2.0/national-championship-four-course.json)
+- [ai-converted-pdf.json](examples/axr/v0.2.0/ai-converted-pdf.json)
+
+Previous-version examples remain at [examples/axr/v0.1.0](examples/axr/v0.1.0).
 
 ## Validation
 
-This repository includes a Node.js validator.
+This repository includes a Node.js validator. It reads each file's own
+`specVersion` and validates against the matching schema version.
 
 ```text
 cd tools
 npm install
-node validate-axr.js ../examples/axr/v0.1.0/*.json
+node validate-axr.js ../examples/axr/v0.2.0/*.json
 ```
 
 More details: [docs/validation.md](docs/validation.md)

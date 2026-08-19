@@ -1,0 +1,59 @@
+{
+  "specVersion": "0.2.0",
+  "format": "axr",
+  "source": {
+    "name": "Example National Championship Final Runs",
+    "url": "https://example.com/results/nationals-2026/final-runs.txt",
+    "retrievedAt": "2026-09-15T22:10:00Z",
+    "publishedAt": null
+  },
+  "producer": {
+    "type": "script",
+    "name": "Example Results Processor",
+    "version": "1.0.0",
+    "organization": "AutocrossRank.com",
+    "contact": null,
+    "notes": "Generated from a downloaded autocross result file."
+  },
+  "provenance": {
+    "conversionMethod": "script",
+    "success": true,
+    "reviewedByHuman": false,
+    "warnings": [],
+    "failedSections": []
+  },
+  "organization": {
+    "name": "Example Motorsport Club"
+  },
+  "event": {
+    "name": "Example National Autoslalom Championship",
+    "regionOrClub": "Example Motorsport Club",
+    "location": "Example Airport, Example, ST",
+    "dates": "September 12-14, 2026",
+    "sourceUrl": "https://example.com/results/nationals-2026/final-runs.txt",
+    "type": "NationalChampionship",
+    "format": "Custom"
+  },
+  "classes": [
+    {
+      "name": "A Street",
+      "shortName": "AS",
+      "drivers": [
+        {
+          "position": 1,
+          "trophy": false,
+          "name": "Jane Driver",
+          "carNumber": "42",
+          "car": "2024 Mazda MX-5",
+          "course1Runs": ["65.706", "DNF"],
+          "course2Runs": ["66.186(1)", "63.297", "63.354"],
+          "course3Runs": ["73.917", "71.420", "70.652"],
+          "course4Runs": ["DNF", "DNF", "77.076"],
+          "totalTime": 276.731,
+          "bestTime": 276.731,
+          "notes": "Four scored courses: Day 1 Set 1 (course1Runs), Day 1 Set 2 (course2Runs), Day 2 Set 1 (course3Runs), Day 2 Set 2 (course4Runs)."
+        }
+      ]
+    }
+  ]
+}
