@@ -1,9 +1,9 @@
 # AXR Field Reference
 
 This reference summarizes the public fields in the current Autocross Result
-Exchange working draft, v0.2.0. The JSON Schema remains the final validation
-contract. See [axr-v0.1.0.md](axr-v0.1.0.md) for the frozen v0.1.0 field set
-(no `course4Runs`) if you're integrating against a pinned `0.1.0`.
+Exchange working draft, v0.3.0. The JSON Schema remains the final validation
+contract. See [v0.3.0](axr-v0.3.0.md) for consumer availability and migration
+rules, and [v0.2.0](axr-v0.2.0.md) / [v0.1.0](axr-v0.1.0.md) for older contracts.
 
 ## `specVersion`
 
@@ -16,13 +16,12 @@ Required: yes.
 Example:
 
 ```json
-"specVersion": "0.2.0"
+"specVersion": "0.3.0"
 ```
 
 Notes: each schema version accepts only its own exact `specVersion` string —
-a `0.2.0` file must use exactly `0.2.0`, a `0.1.0` file must use exactly
-`0.1.0`. Version-specific fields (like `course4Runs`, added in `0.2.0`) are
-only valid under the `specVersion` that introduced them.
+a `0.3.0` file must use exactly `0.3.0`. Version-specific fields (like `course4Runs`, added in `0.2.0`) are
+valid only in versions that support them (`course4Runs` in v0.2.0 and later).
 
 ## `format`
 
@@ -163,8 +162,16 @@ Example:
 
 Notes: `event.name` is required. `event.type` may be `Local`, `Regional`,
 `Divisional`, `National`, `NationalChampionship`, `ProSolo`, `ProSoloFinale`,
-`ChampTour`, or `NationalTour`. `event.format` may be `SingleDay`, `TwoDay`, `TwoDaySum`,
+`ChampTour`, `NationalTour`, or `TestAndTune`. `event.format` may be `SingleDay`, `TwoDay`, `TwoDaySum`,
 `TwoCourseSum`, `ThreeDay`, `BestRunAcrossDays`, `Custom`, or `Standard`.
+
+Optional `event.isPaxed` and `event.paxClasses` describe indexed scoring.
+`isPaxed: true` applies to every class. Otherwise `paxClasses` lists exact
+class `shortName` values (falling back to `name` when absent or null). Each
+key must resolve to exactly one class; this requires semantic validation.
+The list contains unique nonempty strings. Omission means unspecified; an
+empty list explicitly lists no indexed classes. See the
+[indexed scoring rules](axr-v0.3.0.md#indexed-scoring).
 
 ## `classes`
 
@@ -248,7 +255,13 @@ Example:
 }
 ```
 
-Notes: `classes[].drivers[]` is where all individual competitor result data
+Notes: `position` is a positive integer or null for an unplaced entrant.
+Final DQ/DSQ results require null position and cannot award a trophy.
+`sourcePrintedTotal` optionally preserves a disqualified entrant's printed
+numeric total (nonnegative, increments of 0.001) or null. It is provenance,
+never a score; a numeric value requires final DQ/DSQ.
+
+`classes[].drivers[]` is where all individual competitor result data
 lives. Optional fields may be omitted or set to `null` when allowed by the
 schema.
 
@@ -290,9 +303,10 @@ Example:
 }
 ```
 
-Notes: `totalTime` can be a non-negative number, `DSQ`, `DNF`, `DNS`, `RRN`,
-`No Time`, or `null`. `paxTime` and `bestTime` can be non-negative numbers or
-`null`. `paxNote` is a short string or `null`.
+Notes: `totalTime` can be a non-negative number, `DQ`, `DSQ`, `DNF`, `DNS`, `RRN`,
+`No Time`, or `null`. `paxTime` is a nonnegative number or null.
+`bestTime` can additionally be `DQ` or `DSQ` when `totalTime` is DQ/DSQ.
+All numeric summary times use increments of 0.001. `paxNote` is a short string or `null`.
 
 ## Status Values
 
@@ -309,5 +323,5 @@ Example:
 ```
 
 Notes: run strings support `No Time`, `DNF`, `DNS`, `DQ`, `RUN`, `DSQ`,
-`RRN`, and `RL`. `totalTime` supports `DSQ`, `DNF`, `DNS`, `RRN`, and
+`RRN`, and `RL`. `totalTime` supports `DQ`, `DSQ`, `DNF`, `DNS`, `RRN`, and
 `No Time`.

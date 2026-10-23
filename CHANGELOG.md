@@ -1,6 +1,19 @@
 # Changelog
 
-## Unreleased
+## 0.3.0 - Working Draft (2026-10-23)
+
+- Added nullable finishing positions and TestAndTune event type.
+- Added DQ final status, DQ/DSQ bestTime statuses, and sourcePrintedTotal
+  provenance while preserving numeric run attempts. Final DQ/DSQ requires a
+  null position and cannot award a trophy.
+- Added event.isPaxed and event.paxClasses with explicit class-reference and
+  raw-versus-indexed scoring guidance.
+- Added examples, schema contract tests, and validation across all versions.
+- Updated the repository latest mirror to v0.3.0. Published v0.1.0/v0.2.0
+  schemas are unchanged. Production hosting and importer support are pending
+  a separate application release.
+
+## Previous working-draft updates
 
 - Added `ProSoloFinale` as an allowed `event.type` value, alongside `ProSolo`.
   Backward-compatible relaxation applied to `v0.1.0` and `v0.2.0` in place, per

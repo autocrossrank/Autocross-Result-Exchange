@@ -1,14 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://autocrossrank.com/spec/axr/0.2.0/schema.json",
-  "title": "Autocross Result Exchange v0.2.0",
+  "$id": "https://autocrossrank.com/spec/axr/0.3.0/schema.json",
+  "title": "Autocross Result Exchange v0.3.0",
   "description": "A practical open JSON format for publishing autocross event results in a machine-readable way.",
   "type": "object",
   "required": ["specVersion", "event", "classes"],
   "properties": {
     "specVersion": {
       "type": "string",
-      "enum": ["0.2.0"]
+      "enum": ["0.3.0"]
     },
     "format": {
       "type": "string",
@@ -178,7 +178,7 @@
           "oneOf": [
             {
               "type": "string",
-              "enum": ["Local", "Regional", "Divisional", "National", "NationalChampionship", "ProSolo", "ProSoloFinale", "ChampTour", "NationalTour"]
+              "enum": ["Local", "Regional", "Divisional", "National", "NationalChampionship", "ProSolo", "ProSoloFinale", "ChampTour", "NationalTour", "TestAndTune"]
             },
             {
               "type": "null"
@@ -195,6 +195,20 @@
               "type": "null"
             }
           ]
+        },
+        "isPaxed": {
+          "type": "boolean",
+          "description": "True when all competition classes use indexed scores. Omission means unspecified; run arrays always retain raw attempts."
+        },
+        "paxClasses": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "description": "Exact class shortName values, falling back to name if shortName is absent or null, whose scores are indexed. Omission means unspecified; an empty list explicitly lists no indexed classes. isPaxed true applies to every class regardless of this list."
         }
       },
       "additionalProperties": false
@@ -237,8 +251,9 @@
       "required": ["position", "name", "carNumber"],
       "properties": {
         "position": {
-          "type": "integer",
-          "minimum": 1
+          "type": ["integer", "null"],
+          "minimum": 1,
+          "description": "Published finishing position, or null when the entrant is unplaced. Never invent a position from row order."
         },
         "trophy": {
           "type": ["boolean", "null"]
@@ -298,7 +313,7 @@
             },
             {
               "type": "string",
-              "enum": ["DSQ", "DNF", "DNS", "RRN", "No Time"]
+              "enum": ["DQ", "DSQ", "DNF", "DNS", "RRN", "No Time"]
             },
             {
               "type": "null"
@@ -315,16 +330,89 @@
           "maxLength": 50
         },
         "bestTime": {
-          "type": ["number", "null"],
-          "minimum": 0,
-          "multipleOf": 0.001
+          "oneOf": [
+            {
+              "type": ["number", "null"],
+              "minimum": 0,
+              "multipleOf": 0.001
+            },
+            {
+              "type": "string",
+              "enum": ["DQ", "DSQ"]
+            }
+          ],
+          "description": "Numeric best time, null, or DQ/DSQ for a disqualified final result."
         },
         "notes": {
           "type": ["string", "null"],
           "maxLength": 500
+        },
+        "sourcePrintedTotal": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "multipleOf": 0.001,
+          "description": "Original numeric total printed for a subsequently disqualified result. Provenance only: never score or rank using this value."
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "totalTime": {
+                "enum": ["DQ", "DSQ"]
+              }
+            },
+            "required": ["totalTime"]
+          },
+          "then": {
+            "properties": {
+              "position": {
+                "type": "null"
+              },
+              "trophy": {
+                "enum": [false, null]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "sourcePrintedTotal": {
+                "type": "number"
+              }
+            },
+            "required": ["sourcePrintedTotal"]
+          },
+          "then": {
+            "properties": {
+              "totalTime": {
+                "enum": ["DQ", "DSQ"]
+              }
+            },
+            "required": ["totalTime"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "bestTime": {
+                "type": "string"
+              }
+            },
+            "required": ["bestTime"]
+          },
+          "then": {
+            "properties": {
+              "totalTime": {
+                "enum": ["DQ", "DSQ"]
+              }
+            },
+            "required": ["totalTime"]
+          }
+        }
+      ]
     },
     "runArray": {
       "type": "array",

@@ -76,7 +76,7 @@ missing or unreadable.
 ## Example Prompt
 
 ```text
-Convert the attached autocross results into Autocross Result Exchange AXR v0.1.0 JSON.
+Convert the attached autocross results into Autocross Result Exchange AXR v0.3.0 JSON.
 
 Rules:
 - Do not invent missing drivers, classes, run times, car numbers, dates, or PAX values.
@@ -85,7 +85,7 @@ Rules:
 - Use provenance.conversionMethod = "ai".
 - Use provenance.reviewedByHuman = false unless a human has reviewed the result.
 - Add warnings for uncertain rows, unreadable text, or ambiguous penalties.
-- Validate the final JSON against AXR v0.1.0.
+- Validate the final JSON against AXR v0.3.0.
 ```
 
 ## Validation
@@ -95,8 +95,22 @@ Validate every converted file before importing or publishing it.
 ```text
 cd tools
 npm install
-node validate-axr.js ../examples/axr/v0.1.0/ai-converted-pdf.json
+node validate-axr.js ../examples/axr/v0.3.0/ai-converted-pdf.json
 ```
 
 Validation only confirms that the JSON matches the schema. It does not prove the
 conversion is accurate, complete, or officially reviewed.
+
+## v0.3.0 result fidelity and availability
+
+Use null position for unplaced entrants. For final DQ/DSQ, retain numeric run
+attempts, clear position, do not award a trophy, and preserve any printed total
+in sourcePrintedTotal rather than treating it as a score. Use event.isPaxed or
+event.paxClasses for explicit indexed scoring, keeping raw attempts in run
+arrays. Use TestAndTune for practice events. See the
+[v0.3.0 specification](axr-v0.3.0.md) for exact types and constraints.
+
+Choose a version supported by the receiving system. AutocrossRank production
+currently supports v0.1.0/v0.2.0; this repository draft does not deploy v0.3.0
+import support or its hosted schema. Do not downgrade by silently discarding
+the new fields.

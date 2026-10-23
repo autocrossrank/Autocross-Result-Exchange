@@ -18,7 +18,9 @@ Breaking changes should increment the minor version before `1.0`.
 Examples:
 
 - `0.1.0` is the initial public working draft.
-- `0.2.0` may add fields or refine structure.
+- `0.2.0` added the fourth course array.
+- `0.3.0` adds result provenance and scoring metadata, nullable positions, and
+  stricter final disqualification constraints. Older published schemas stay unchanged.
 - `1.0.0` would indicate a stable public contract.
 
 ## Pin Schema Versions

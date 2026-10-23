@@ -1,0 +1,32 @@
+{
+  "specVersion": "0.3.0",
+  "format": "axr",
+  "producer": {
+    "type": "script",
+    "name": "Fictional AXR example"
+  },
+  "event": {
+    "name": "Example Practice Day",
+    "type": "TestAndTune",
+    "format": "SingleDay"
+  },
+  "classes": [
+    {
+      "name": "Practice",
+      "drivers": [
+        {
+          "position": null,
+          "name": "Sam Example",
+          "carNumber": "9",
+          "course1Runs": [
+            "60.500",
+            "DNF",
+            "60.000"
+          ],
+          "totalTime": null,
+          "bestTime": 60.0
+        }
+      ]
+    }
+  ]
+}
