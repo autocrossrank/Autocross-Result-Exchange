@@ -1,0 +1,56 @@
+{
+  "specVersion": "0.3.0",
+  "format": "axr",
+  "producer": {
+    "type": "script",
+    "name": "Fictional AXR example"
+  },
+  "event": {
+    "name": "Example Indexed Event",
+    "type": "Local",
+    "format": "SingleDay",
+    "isPaxed": false,
+    "paxClasses": [
+      "PRO"
+    ]
+  },
+  "classes": [
+    {
+      "name": "Pro Index",
+      "shortName": "PRO",
+      "drivers": [
+        {
+          "position": 1,
+          "name": "Alex Example",
+          "carNumber": "7",
+          "course1Runs": [
+            "60.000",
+            "61.000(1)",
+            "RRN"
+          ],
+          "totalTime": 48.0,
+          "paxTime": 48.0,
+          "paxNote": "AS",
+          "bestTime": 60.0
+        }
+      ]
+    },
+    {
+      "name": "D Street",
+      "shortName": "DS",
+      "drivers": [
+        {
+          "position": 1,
+          "name": "Casey Example",
+          "carNumber": "8",
+          "course1Runs": [
+            "64.000",
+            "63.000"
+          ],
+          "totalTime": 63.0,
+          "bestTime": 63.0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "specVersion": "0.3.0",
+  "format": "axr",
+  "producer": {
+    "type": "script",
+    "name": "Fictional AXR example"
+  },
+  "event": {
+    "name": "Example Championship",
+    "type": "NationalChampionship",
+    "format": "TwoCourseSum"
+  },
+  "classes": [
+    {
+      "name": "D Street",
+      "shortName": "DS",
+      "drivers": [
+        {
+          "position": null,
+          "trophy": false,
+          "name": "Jordan Example",
+          "carNumber": "42",
+          "course1Runs": [
+            "65.000",
+            "64.500",
+            "DNF"
+          ],
+          "course2Runs": [
+            "67.500",
+            "67.076",
+            "68.000(1)"
+          ],
+          "totalTime": "DQ",
+          "bestTime": "DQ",
+          "sourcePrintedTotal": 131.576,
+          "notes": "Published disqualification; original attempts and printed total retained."
+        }
+      ]
+    }
+  ]
+}

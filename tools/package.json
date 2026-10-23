@@ -5,7 +5,8 @@
   "description": "Validation tools for Autocross Result Exchange.",
   "type": "commonjs",
   "scripts": {
-    "validate": "node validate-axr.js ../examples/axr/v0.1.0/*.json"
+    "validate": "node validate-axr.js ../examples/axr/v0.1.0/*.json ../examples/axr/v0.2.0/*.json ../examples/axr/v0.3.0/*.json",
+    "test": "node --test schema.test.js"
   },
   "dependencies": {
     "ajv": "^8.17.1",

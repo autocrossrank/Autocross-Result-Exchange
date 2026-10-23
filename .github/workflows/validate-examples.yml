@@ -27,7 +27,11 @@ jobs:
 
       - name: Validate AXR examples
         working-directory: tools
-        run: node validate-axr.js ../examples/axr/v0.1.0/*.json ../examples/axr/v0.2.0/*.json
+        run: npm run validate
+
+      - name: Test schema contracts
+        working-directory: tools
+        run: npm test
 
       - name: Verify latest schema mirror
-        run: cmp schema/axr/v0.2.0/schema.json schema/axr/latest/schema.json
+        run: cmp schema/axr/v0.3.0/schema.json schema/axr/latest/schema.json

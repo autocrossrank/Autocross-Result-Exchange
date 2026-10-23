@@ -16,7 +16,7 @@ as simple as adding an "Export AXR JSON" option.
 
 ```json
 {
-  "specVersion": "0.1.0",
+  "specVersion": "0.3.0",
   "event": {
     "name": "Example Event"
   },
@@ -140,7 +140,7 @@ Use `totalTime` when the status is the driver's final scored result.
 }
 ```
 
-`totalTime` accepts `DSQ`, `DNF`, `DNS`, `RRN`, `No Time`, a non-negative
+`totalTime` accepts `DQ`, `DSQ`, `DNF`, `DNS`, `RRN`, `No Time`, a non-negative
 number, or `null`.
 
 ## Two-Course Events
@@ -180,11 +180,25 @@ Run the included validator before publishing AXR files:
 ```text
 cd tools
 npm install
-node validate-axr.js ../examples/axr/v0.1.0/*.json
+node validate-axr.js ../examples/axr/v0.3.0/*.json
 ```
 
 ## Pin Schema Versions
 
 Vendors should validate and publish against pinned schema versions such as
-`0.1.0`. The `/latest/` schema is useful for exploration and development, but
+`0.3.0`. The `/latest/` schema is useful for exploration and development, but
 stable integrations should not depend on it.
+
+## v0.3.0 result fidelity and availability
+
+Use null position for unplaced entrants. For final DQ/DSQ, retain numeric run
+attempts, clear position, do not award a trophy, and preserve any printed total
+in sourcePrintedTotal rather than treating it as a score. Use event.isPaxed or
+event.paxClasses for explicit indexed scoring, keeping raw attempts in run
+arrays. Use TestAndTune for practice events. See the
+[v0.3.0 specification](axr-v0.3.0.md) for exact types and constraints.
+
+Choose a version supported by the receiving system. AutocrossRank production
+currently supports v0.1.0/v0.2.0; this repository draft does not deploy v0.3.0
+import support or its hosted schema. Do not downgrade by silently discarding
+the new fields.
